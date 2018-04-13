@@ -73,8 +73,19 @@ describe('Xtore', () => {
   });
 
   describe('update()', () => {
-    it.skip('should not next for different ids', () => {
+    it('should not call next for different ids', () => {
+      const xtore = new Xtore();
+      const nextMock = jest.fn();
 
+      const subscription = xtore.subscribe('id-1', {
+        next: nextMock
+      });
+
+      xtore.update('id-2', {
+        country: 'Spain'
+      });
+      
+      expect(nextMock).not.toBeCalled();
     });
   });
 });
