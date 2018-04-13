@@ -1,5 +1,14 @@
 import Xtore from '../src';
 
+type Person = {
+  name: string;
+  age: number;
+}
+
+type City = {
+  country: string;
+}
+
 describe('Xtore', () => {
   const setup = () => {
     return {
@@ -9,16 +18,17 @@ describe('Xtore', () => {
   
   describe('subscribe()', () => {
     it('should get the latest state of the model', () => {
-      const xtore = new Xtore();
+      
+      const xtore = new Xtore<Person | City>();
       const nextMock = jest.fn();
 
       xtore.subscribe('id-1', {
         next: nextMock
       });
 
-      xtore.update('id-1', {name: 'hector'});
-      xtore.update('id-1', {name: 'hector', age: 26});
-      xtore.update('id-1', {name: 'zzarcon', age: 26});
+      xtore.update<Person>('id-1', {name: 'hector'});
+      xtore.update<Person>('id-1', {name: 'hector', age: 26});
+      xtore.update<Person>('id-1', {name: 'zzarcon', age: 26});
 
       expect(nextMock).toHaveBeenCalledTimes(3);
       expect(nextMock.mock.calls[0][0]).toEqual({name: 'hector'});
@@ -53,14 +63,14 @@ describe('Xtore', () => {
 
   describe('unsubscribe()', () => {
     it('should not call next after unsubscription', () => {
-      const xtore = new Xtore();
+      const xtore = new Xtore<Person | City>();
       const nextMock = jest.fn();
 
       const subscription = xtore.subscribe('id-1', {
         next: nextMock
       });
 
-      xtore.update('id-1', {
+      xtore.update<City>('id-1', {
         country: 'Spain'
       });
       subscription.unsubscribe();
