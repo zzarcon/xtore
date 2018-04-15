@@ -49,6 +49,10 @@ describe('Xtore', () => {
       
       expect(nextMock).toHaveBeenCalledTimes(0);
     });
+
+    it('should call all observers subscribed to the same id', () => {
+
+    });
   });
 
   describe('unsubscribe()', () => {
