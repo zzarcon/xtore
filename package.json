@@ -1,6 +1,6 @@
 {
   "name": "xtore",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "General purpose lib to subscribe and handle state",
   "main": "dist/index.js",
   "repository": "git@github.com:zzarcon/xtore.git",
