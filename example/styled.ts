@@ -28,6 +28,6 @@ injectGlobal`
 export const AppWrapper = styled.div`
   max-width: 600px;
   background-color: white;
-  margin: 0 auto;
+  margin: 50px auto;
   padding: 15px;
 `;
