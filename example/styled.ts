@@ -1,6 +1,8 @@
 import styled, {injectGlobal} from 'styled-components';
 import './higlight';
 
+const colors = ['#47BBC3', '#F08D80', '#FF98FD', '#FFD863', '#88EDA8'];
+
 injectGlobal`
   body {
     background-color: #FF98FD;
