@@ -13,5 +13,9 @@
       "es2015.promise"
     ],
     "jsx": "react"
-  }
+  },
+  "files": [
+    "./custom-typings/react-markings.d.ts",
+    "./custom-typings/react-highlight.d.ts"
+  ]
 }

@@ -16,6 +16,10 @@ injectGlobal`
     text-shadow: 1px 1px white;
   }
 
+  blockquote {
+    text-decoration: underline;
+  }
+
   code.javascript {
     text-shadow: none;
   }
