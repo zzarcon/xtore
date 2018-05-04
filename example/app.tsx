@@ -7,10 +7,10 @@ import {AppWrapper} from './styled';
 
 const text = md`
 # 📬 Xtore [![Build Status](https://travis-ci.org/zzarcon/xtore.svg?branch=master)](https://travis-ci.org/zzarcon/xtore)
-> General purpose lib to subscribe and handle state
+> General purpose library to subscribe and handle state
 
-Xtore provides a generic way of notifying state changes, it's depency free and 
-[1kB](https://bundlephobia.com/result?p=xtore@0.0.2) size, but offers a simple state management tool for your app.
+Xtore provides a generic way of notifying state changes, it's **type safe**, **depency free** and 
+[1kB](https://bundlephobia.com/result?p=xtore@0.0.2) size.
 
 You can think about it like a convenient event emitter or an extremelly simple RXJS. 
 
@@ -29,6 +29,16 @@ ${code.basic}
 Stop listening for changes:
 
 ${code.unsubscribe}
+
+# Api
+
+### subscribe <> unsubscribe
+
+${code.apiSubscribe}
+
+### update
+
+${code.apiUpdate}
 
 # Plugins
 

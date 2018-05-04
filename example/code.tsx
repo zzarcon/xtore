@@ -3,33 +3,63 @@ import Highlight from 'react-highlight';
 
 const highlight = (code: string) => (
   <Highlight language="javascript" className="javascript">
-    {code}
+    {code.trim()}
   </Highlight>  
 );
 
-export const basic = highlight(`import Xtore from 'xtore';
-const xtore = new Xtore();
-xtore.subscribe('some-unique-id', {
-  next(state) {
-    console.log(state);
+export const basic = highlight(`
+import Xtore from 'xtore';
+
+interface Cat {
+  name: string;
+  age: number;
+}
+
+interface City {
+  country: string;
+}
+
+const xtore = new Xtore<{cat: Cat, city: City}>();
+xtore.subscribe('cat', 'id-1' {
+  next(state) { // Some Cat state
+    console.log(state.name);
   }
 });
-xtore.update('some-unique-id', {name: 'hector'});
-// LOG: {name: 'hector'}
-xtore.update('some-unique-id', {lastName: 'zarco'});
-// LOG: {name: 'hector', lastName: 'zarco'}
-xtore.update('some-unique-id', {name: 'leon'});
-// LOG: {name: 'leon', lastName: 'zarco'}
-xtore.update('other-id', {name: 'zzarcon'});
+xtore.update('cat', 'id-1' {name: 'Smokey'});
+// LOG: {name: 'Smokey'}
+xtore.update('cat', 'id-1', {age: 2});
+// LOG: {name: 'Smokey', age: 2}
+xtore.update('cat', 'id-1', {name: 'tigger'});
+// LOG: {name: 'tigger', age: 2}
+xtore.update('cat', '2', {name: 'zzarcon'});
+// Nothing will be logged 😉
+xtore.update('city', '1', {country: 'Spain'});
 // Nothing will be logged 😉
 `);
 
-export const unsubscribe = highlight(`import Xtore from 'xtore';
-const xtore = new Xtore();
-const subscription = xtore.subscribe('id-1', {next: console.log});
-xtore.update('id-1', {foo: 'bar'});
+export const unsubscribe = highlight(`
+import Xtore from 'xtore';
+const xtore = new Xtore<{cat: Cat}>();
+const subscription = xtore.subscribe('cat', '1', {next: console.log});
+xtore.update('cat', '1', {name: 'Missy'});
 // LOG: {foo: 'bar'}
 subscription.unsubscribe();
-xtore.update('id-1', {hi: 'hola'});
+xtore.update('cat', '1', {name: 'Misty'});
 // Nothing will be logged
+`);
+
+export const apiSubscribe = highlight(`
+interface Observer<T> {
+  next: (state: T) => void;
+}
+
+interface Subscription {
+  unsubscribe: () => void;
+}
+
+subscribe(type: keyof T, id: string, observer: Observer<T]>): Subscription
+`);
+
+export const apiUpdate = highlight(`
+update(type: keyof T, id: string, state: Partial<T>) 
 `);
